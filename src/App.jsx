@@ -128,7 +128,7 @@ function App() {
     // console.log(result)
 
   }, [text])
-  
+
   useEffect(() => {
 
     const pasteImg = async () => {
