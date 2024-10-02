@@ -1,0 +1,14 @@
+# Maplestory Scrapyard Helper
+
+Tells you the difficulty of your scrapyard weeklies based on your screenshot image.
+
+## To Do List
+
+[x] Basic OCR Functionality w/tesseract.js
+[x] Preprocessing Image w/opencv
+[x] Fuzzy Search Text With Quests w/fuse.js
+[] Refactor useEffects into Separate Files
+[] Styling
+
+
+[] Verify Quest Names
