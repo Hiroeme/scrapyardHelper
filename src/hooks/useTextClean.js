@@ -17,16 +17,14 @@ const useTextClean = (text) => {
 
     // this is where we try to separate the quests based on [Weekly Quest] separators
     const pattern = /\[Weekly Quest\][\s\S]*?(?=\[Weekly Quest\]|$)/g;
-    const matchedText = text.match(pattern);
-    const strippedText = matchedText.map(text => text.replace("[Weekly Quest] ", ""));
-
-    // console.log(strippedText)
+    const matchedText = text.match(pattern) || [];
+    const strippedText = matchedText.map(text => text.replace("Weekly Quest", ""));
 
     const options = {
       includeScore: true,
       shouldSort: true,
       ignoreLocation: true,
-      threshold: 0.6,
+      threshold: 0.4,
       keys: ['name']
     };
 
@@ -35,12 +33,15 @@ const useTextClean = (text) => {
       const matches = fuse.search(text);
       if (matches.length > 0) {
         const bestMatch = matches[0].item;
-        // console.log(`Extracted Quest: "${text}"\n Best Match: "${bestMatch.name}"\n Score: ${matches[0].score}\n`);
+        console.log(`Extracted Quest: "${text}"\n Best Match: "${bestMatch.name}"\n Score: ${matches[0].score}\n`);
         return bestMatch;
       }
     });
     
     setCleanText(bestMatches);
+
+    console.log(text)
+    console.log(strippedText)
 
     return () => {
       setCleanText([])

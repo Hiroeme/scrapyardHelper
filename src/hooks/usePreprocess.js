@@ -21,7 +21,8 @@ const usePreprocess = () => {
 
         cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0)
 
-        cv.threshold(gray, binary, 200, 255, cv.THRESH_BINARY);
+        // threshold = 220, might need to change again
+        cv.threshold(gray, binary, 220, 255, cv.THRESH_BINARY);
 
         const contours = new cv.MatVector();
         const hierachy = new cv.Mat();
@@ -43,11 +44,14 @@ const usePreprocess = () => {
         // region of interest, crops image region based on bounding rect
         // https://docs.opencv.org/3.4/js_basic_ops_roi.html
         const croppedImage = binary.roi(boundingBox);
+
+        // console.log(croppedImage.cols, croppedImage.rows)
+
+        // implement scaling when image too small too read accurately
         
         const canvas = document.createElement('canvas');
         cv.imshow(canvas, croppedImage);
         
-
         setProcImage(canvas.toDataURL());
 
         src.delete();
