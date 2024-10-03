@@ -15,7 +15,14 @@ function App() {
       <h1>
         Maplestory Scrapyard Helper
       </h1>
-      <p>Copy and paste your image here!</p>
+      <div>
+        <p>
+          Copy and paste your scrapyard weeklies to display the average time required for completing each one.
+        </p>
+        <p>
+          Note: This is a <b>WIP</b> so it can be inaccurate!
+        </p>
+      </div >
       <div>
         {image && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={image} alt="copy pasted image" />}
       </div>
