@@ -3,76 +3,23 @@ import cv from "@techstark/opencv-js";
 import Fuse from 'fuse.js'
 import { createWorker } from 'tesseract.js';
 import data from '../data.json'
+import usePreprocess from "./hooks/usePreprocess";
 
 function App() {
 
-  const [img, setImg] = useState('')
   const [text, setText] = useState('')
-  const [procImg, setProcImg] = useState('')
   const [seenQuests, setSeenQuests] = useState([])
 
+  const [image, setImage, procImage] = usePreprocess();
+  
+  
   useEffect(() => {
-    if (!img) return;
-
-    const processImg = () => {
-      const imageElement = new Image()
-      imageElement.src = img
-      
-      imageElement.onload = () => {
-
-        const src = cv.imread(imageElement)
-        const gray = new cv.Mat()
-        const binary = new cv.Mat()
-        
-        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0)
-
-        // 210 threshold for now
-        cv.threshold(gray, binary, 200, 255, cv.THRESH_BINARY)
-        
-        const contours = new cv.MatVector()
-        const hierarchy = new cv.Mat()
-        cv.findContours(binary, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE)
-        
-        let max = 0
-        let maxcontour = null
-        for (let i = 0; i < contours.size(); i++) {
-          const size = cv.contourArea(contours.get(i))
-          if (size > max) {
-            max = size
-            maxcontour = contours.get(i)
-          }
-        }
-        //console.log(maxcontour, max)
-
-        // returns the minimal up-right bounding rectangle for the specified point set
-        const box = cv.boundingRect(maxcontour)
-        // region of interest, crops image region based on bounding rect
-        // https://docs.opencv.org/3.4/js_basic_ops_roi.html
-        const crop = binary.roi(box)
-        
-        const canvas = document.createElement('canvas')
-        cv.imshow(canvas, crop)
-        
-        setProcImg(canvas.toDataURL())
-        
-        src.delete()
-        gray.delete()
-        binary.delete()
-        hierarchy.delete()
-        contours.delete()
-      }
-    };
-
-    processImg()
-  }, [img])
-
-  useEffect(() => {
-    if (!procImg) return;
+    if (!procImage) return;
     const extractTextFromImage = async () => {
   
       const worker = await createWorker('eng');
   
-      const { data: { text : imageText } } = await worker.recognize(procImg);
+      const { data: { text : imageText } } = await worker.recognize(procImage);
       // console.log(imageText);
       setText(imageText)
   
@@ -80,7 +27,7 @@ function App() {
     };
   
     extractTextFromImage()
-  }, [procImg])
+  }, [procImage])
 
   useEffect(() => {
     if (!text) return;
@@ -118,8 +65,6 @@ function App() {
       }
     })
 
-    
-    
     // const result = fuseresult.filter(quest => allnames.includes(quest.item))
 
     // console.log(fuseresult)
@@ -136,7 +81,7 @@ function App() {
         const clipboardItems = await navigator.clipboard.read()
         const blobOutput = await clipboardItems[0].getType('image/png')
         const data = URL.createObjectURL(blobOutput)
-        setImg(data)
+        setImage(data)
       } catch(e) {
         console.log(e)
       }
@@ -145,7 +90,7 @@ function App() {
     const handlePaste = () => pasteImg();
     document.addEventListener('paste', handlePaste);
     return () => document.removeEventListener('paste', handlePaste);
-  }, [])
+  }, [setImage])
 
   return (
     <div>
@@ -154,10 +99,10 @@ function App() {
       </h1>
       <p>Copy and paste</p>
       <div>
-        {img && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={img} alt="copy pasted image" />}
+        {image && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={image} alt="copy pasted image" />}
       </div>
       <div>
-        {procImg && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={procImg} alt="processed image" />}
+        {procImage && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={procImage} alt="processed image" />}
       </div>
 
       <ul>
