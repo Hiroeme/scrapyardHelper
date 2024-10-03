@@ -33,15 +33,15 @@ const useTextClean = (text) => {
       const matches = fuse.search(text);
       if (matches.length > 0) {
         const bestMatch = matches[0].item;
-        console.log(`Extracted Quest: "${text}"\n Best Match: "${bestMatch.name}"\n Score: ${matches[0].score}\n`);
+        // console.log(`Extracted Quest: "${text}"\n Best Match: "${bestMatch.name}"\n Score: ${matches[0].score}\n`);
         return bestMatch;
       }
     });
     
     setCleanText(bestMatches);
 
-    console.log(text)
-    console.log(strippedText)
+    // console.log(text)
+    // console.log(strippedText)
 
     return () => {
       setCleanText([])
