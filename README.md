@@ -12,15 +12,14 @@ Quest names and difficulty were pulled from
 ## To Do List
 
 ### Main
-[x] Basic OCR Functionality w/tesseract.js
-[x] Preprocessing Image w/opencv
-[x] Fuzzy Search Text With Quests w/fuse.js
-[] Information
-[] Verify Quest Names
-[] Reroll Recommender
+- [x] Basic OCR Functionality w/tesseract.js
+- [x] Preprocessing Image w/opencv
+- [x] Fuzzy Search Text With Quests w/fuse.js
+- [] Information
+- [] Verify Quest Names
+- [] Reroll Recommender
 
 ### Side
-[x] Refactor useEffects into Separate Files
-[] Styling
-[] How to Copy and Paste Guide
-
+- [x] Refactor useEffects into Separate Files
+- [] Styling
+- [] How to Copy and Paste Guide
