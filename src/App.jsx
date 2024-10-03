@@ -1,32 +1,15 @@
-import { useEffect } from "react"
 import usePreprocess from "./hooks/usePreprocess";
 import useTextExtract from "./hooks/useTextExtract";
 import useTextClean from "./hooks/useTextClean";
+import useClipboard from "./hooks/useClipboard";
 
 function App() {
 
   const [image, setImage, procImage] = usePreprocess();
   const extractedText = useTextExtract(procImage)
   const quests = useTextClean(extractedText)
+  useClipboard(setImage)
   
-  useEffect(() => {
-
-    const pasteImg = async () => {
-      try {
-        const clipboardItems = await navigator.clipboard.read()
-        const blobOutput = await clipboardItems[0].getType('image/png')
-        const data = URL.createObjectURL(blobOutput)
-        setImage(data)
-      } catch(e) {
-        console.log(e)
-      }
-    }
-
-    const handlePaste = () => pasteImg();
-    document.addEventListener('paste', handlePaste);
-    return () => document.removeEventListener('paste', handlePaste);
-  }, [setImage])
-
   return (
     <div>
       <h1>
