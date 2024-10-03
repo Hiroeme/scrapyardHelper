@@ -21,11 +21,10 @@ const usePreprocess = () => {
         const binary = new cv.Mat();
 
         // implement scaling when image too small too read accurately
-        const scale = 1.75;
-        let dsize = new cv.Size(src.cols * scale, src.rows * scale);
-        cv.resize(src, scaled, dsize, 0, 0, cv.INTER_LINEAR)
+        const scale = 2;
+
         
-        cv.cvtColor(scaled, gray, cv.COLOR_RGBA2GRAY, 0)
+        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0)
 
         // threshold = 220, might need to change again
         cv.threshold(gray, binary, 220, 255, cv.THRESH_BINARY);
@@ -54,8 +53,12 @@ const usePreprocess = () => {
         console.log(croppedImage.cols, croppedImage.rows)
         
         const canvas = document.createElement('canvas');
-        cv.imshow(canvas, croppedImage);
         
+        let dsize = new cv.Size(croppedImage.cols * scale, croppedImage.rows * scale);
+        cv.resize(croppedImage, scaled, dsize, 0, 0, cv.INTER_LINEAR)
+
+        cv.imshow(canvas, scaled);
+
         setProcImage(canvas.toDataURL());
         
         src.delete();
