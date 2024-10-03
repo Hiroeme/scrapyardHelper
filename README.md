@@ -1,8 +1,26 @@
-# React + Vite
+# Maplestory Scrapyard Helper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tells you the difficulty of your scrapyard weeklies based on your screenshot image.
 
-Currently, two official plugins are available:
+## Information
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Quest names and difficulty were pulled from 
+- [u/GyroBallMetagross Google Sheets](https://docs.google.com/spreadsheets/d/1FJcMQHfhsDNsRQW_KhrmR3uyWmudv8e8Y_nY5uawKAg/edit?gid=0#gid=0)
+- [StrategyWiki](https://strategywiki.org/wiki/MapleStory/Towns/Scrapyard)
+- [Maplestory Wiki](https://maplestorywiki.net/w/Quests/105/(Weekly_Quest)_Haven_Weekly_Mission)
+
+## To Do List
+
+### Main
+[x] Basic OCR Functionality w/tesseract.js
+[x] Preprocessing Image w/opencv
+[x] Fuzzy Search Text With Quests w/fuse.js
+[] Information
+[] Verify Quest Names
+[] Reroll Recommender
+
+### Side
+[x] Refactor useEffects into Separate Files
+[] Styling
+[] How to Copy and Paste Guide
+

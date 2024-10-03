@@ -20,7 +20,7 @@ function App() {
           Copy and paste your scrapyard weeklies to display the average time required for completing each one.
         </p>
         <p>
-          Note: This is a <b>WIP</b> so it can be inaccurate!
+          Note: This is a <a href="https://github.com/Hiroeme/scrapyardHelper"><b>WIP</b></a> so it can be inaccurate!
         </p>
       </div >
       <div>
