@@ -1,34 +1,16 @@
 import { useState, useEffect } from "react"
-import cv from "@techstark/opencv-js";
 import Fuse from 'fuse.js'
-import { createWorker } from 'tesseract.js';
 import data from '../data.json'
 import usePreprocess from "./hooks/usePreprocess";
+import useTextExtract from "./hooks/useTextExtract";
 
 function App() {
 
-  const [text, setText] = useState('')
   const [seenQuests, setSeenQuests] = useState([])
 
   const [image, setImage, procImage] = usePreprocess();
+  const text = useTextExtract(procImage)
   
-  
-  useEffect(() => {
-    if (!procImage) return;
-    const extractTextFromImage = async () => {
-  
-      const worker = await createWorker('eng');
-  
-      const { data: { text : imageText } } = await worker.recognize(procImage);
-      // console.log(imageText);
-      setText(imageText)
-  
-      await worker.terminate()
-    };
-  
-    extractTextFromImage()
-  }, [procImage])
-
   useEffect(() => {
     if (!text) return;
 
