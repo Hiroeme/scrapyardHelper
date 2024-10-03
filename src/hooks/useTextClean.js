@@ -18,7 +18,8 @@ const useTextClean = (text) => {
     // this is where we try to separate the quests based on [Weekly Quest] separators
     const pattern = /\[Weekly Quest\][\s\S]*?(?=\[Weekly Quest\]|$)/g;
     const matchedText = text.match(pattern) || [];
-    const strippedText = matchedText.map(text => text.replace("Weekly Quest", ""));
+    // replace the weekly quest marker, and any characters after a newline
+    const strippedText = matchedText.map(text => text.replace("Weekly Quest", "").replace(/\n[\s\S]*/, ''));
 
     const options = {
       includeScore: true,
@@ -37,11 +38,12 @@ const useTextClean = (text) => {
         return bestMatch;
       }
     });
-    
+
     setCleanText(bestMatches);
 
     // console.log(text)
     // console.log(strippedText)
+    // console.log(bestMatches)
 
     return () => {
       setCleanText([])
