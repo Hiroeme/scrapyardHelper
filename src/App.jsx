@@ -15,7 +15,7 @@ function App() {
       <h1>
         Maplestory Scrapyard Helper
       </h1>
-      <p>Copy and paste</p>
+      <p>Copy and paste your image here!</p>
       <div>
         {image && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={image} alt="copy pasted image" />}
       </div>
