@@ -21,7 +21,7 @@ const usePreprocess = () => {
         const binary = new cv.Mat();
 
         // implement scaling when image too small too read accurately
-        const scale = 2;
+        const scale = 1.75;
         let dsize = new cv.Size(src.cols * scale, src.rows * scale);
         cv.resize(src, scaled, dsize, 0, 0, cv.INTER_LINEAR)
         
