@@ -1,61 +1,14 @@
-import { useState, useEffect } from "react"
-import Fuse from 'fuse.js'
-import data from '../data.json'
+import { useEffect } from "react"
 import usePreprocess from "./hooks/usePreprocess";
 import useTextExtract from "./hooks/useTextExtract";
+import useTextClean from "./hooks/useTextClean";
 
 function App() {
 
-  const [seenQuests, setSeenQuests] = useState([])
-
   const [image, setImage, procImage] = usePreprocess();
-  const text = useTextExtract(procImage)
+  const extractedText = useTextExtract(procImage)
+  const quests = useTextClean(extractedText)
   
-  useEffect(() => {
-    if (!text) return;
-
-    // could remove 
-    // console.log(text.replace(/(\W\r\n|\n|\r)/gm, " "))
-    // const result = data.quests
-    //   .filter(quest => text.replace(/(\W\r\n|\n|\r)/gm, " ").toLowerCase().includes(quest.name.toLowerCase()))
-    
-    // console.log(text)
-
-    const questPattern = /\[Weekly Quest\][\s\S]*?(?=\[Weekly Quest\]|$)/g;
-    const extractedQuests = text.match(questPattern) || [];
-    const parsedQuests = extractedQuests.map(name => name.replace("[Weekly Quest] ", ""))
-
-    const options = {
-      includeScore: true,
-      shouldSort: true,
-      ignoreLocation: true,
-      threshold: 0.6,
-      keys: ['name']
-    }
-
-    const fuse = new Fuse(data.quests, options)
-    
-    console.log(parsedQuests)
-
-    const result = parsedQuests.map(extractedQuest => {
-      const result = fuse.search(extractedQuest)
-      // console.log(result)
-      if (result.length > 0) {
-        const bestMatch = result[0].item
-        console.log(`Extracted Quest: "${extractedQuest}"\nBest Match: "${bestMatch.name}"\nScore: ${result[0].score}\n`)
-        return bestMatch
-      }
-    })
-
-    // const result = fuseresult.filter(quest => allnames.includes(quest.item))
-
-    // console.log(fuseresult)
-    
-    setSeenQuests(result)
-    // console.log(result)
-
-  }, [text])
-
   useEffect(() => {
 
     const pasteImg = async () => {
@@ -88,7 +41,7 @@ function App() {
       </div>
 
       <ul>
-      {text && seenQuests.map(quest => (
+      {quests && quests.map(quest => (
         <li key={quest.name}> Name: {quest.name} Average Time Required: {quest.averagetime}</li>
       ))}
       </ul>
