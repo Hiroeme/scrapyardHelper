@@ -50,7 +50,7 @@ const usePreprocess = () => {
         // https://docs.opencv.org/3.4/js_basic_ops_roi.html
         const croppedImage = binary.roi(boundingBox);
 
-        console.log(croppedImage.cols, croppedImage.rows)
+        // console.log(croppedImage.cols, croppedImage.rows)
         
         const canvas = document.createElement('canvas');
         
