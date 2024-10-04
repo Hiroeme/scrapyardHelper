@@ -19,7 +19,7 @@ const useTextClean = (text) => {
     const pattern = /\[Weekly Quest\][\s\S]*?(?=\[Weekly Quest\]|$)/g;
     const matchedText = text.match(pattern) || [];
     // replace the weekly quest marker, and any characters after a newline
-    const strippedText = matchedText.map(text => text.replace("Weekly Quest", "").replace(/\n[\s\S]*/, ''));
+    const strippedText = matchedText.map(text => text.replace("[Weekly Quest]", "").trim());
 
     const options = {
       includeScore: true,
