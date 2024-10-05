@@ -27,7 +27,7 @@ function App() {
         {image && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={image} alt="copy pasted image" />}
       </div>
       <div>
-        {/* {procImage && <img style={{}} src={procImage} alt="processed image" />} */}
+        {/* {procImage && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={procImage} alt="processed image" />} */}
       </div>
 
       <ul>

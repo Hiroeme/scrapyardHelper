@@ -1,79 +1,59 @@
-import cv from "@techstark/opencv-js";
 import { useState, useEffect } from "react";
+import { convertToGrayscale, convertToBinary, findContours, getBoundingRect, getMaxContour, cropImageByBox } from "../utils/imageprocessing";
 
 const usePreprocess = () => {
-  
   const [image, setImage] = useState(null);
   const [procImage, setProcImage] = useState(null);
 
   useEffect(() => {
     if (!image) return;
-    
+
     const processImage = () => {
       const imageElement = new Image();
       imageElement.src = image;
-      
+
       imageElement.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
 
-        const src = cv.imread(imageElement);
-        const scaled = new cv.Mat();
-        const gray = new cv.Mat();
-        const binary = new cv.Mat();
+        canvas.width = imageElement.width;
+        canvas.height = imageElement.height;
 
-        // implement scaling when image too small too read accurately
-        const scale = 2;
+        ctx.drawImage(imageElement, 0, 0);
 
-        
-        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0)
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        // const { data, width, height } = imageData;
 
-        // threshold = 220, might need to change again
-        cv.threshold(gray, binary, 220, 255, cv.THRESH_BINARY);
+        // 1 channel
+        const grayscaleData = convertToGrayscale(imageData.data);
+        // 1 channel
+        const binaryData = convertToBinary(grayscaleData, 220);
 
-        const contours = new cv.MatVector();
-        const hierachy = new cv.Mat();
-        cv.findContours(binary, contours, hierachy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
-
-        let max = 0;
-        let maxcontour = null;
-        for (let i = 0; i < contours.size(); i++) {
-          const curr = contours.get(i);
-          const size = cv.contourArea(curr);
-          if (size > max) {
-            max = size;
-            maxcontour = curr;
-          }
+        // binaryData to 4 channel to put on canvas
+        for (let i = 0; i < binaryData.length; i++) {
+          const value = binaryData[i];
+          imageData.data[i * 4] = value;
+          imageData.data[i * 4 + 1] = value;
+          imageData.data[i * 4 + 2] = value;
+          imageData.data[i * 4 + 3] = 255;
         }
 
-        // returns the minimal up-right bounding rectangle for the specified point set
-        const boundingBox = cv.boundingRect(maxcontour);
-        // region of interest, crops image region based on bounding rect
-        // https://docs.opencv.org/3.4/js_basic_ops_roi.html
-        const croppedImage = binary.roi(boundingBox);
+        ctx.putImageData(imageData, 0, 0)
 
-        // console.log(croppedImage.cols, croppedImage.rows)
-        
-        const canvas = document.createElement('canvas');
-        
-        let dsize = new cv.Size(croppedImage.cols * scale, croppedImage.rows * scale);
-        cv.resize(croppedImage, scaled, dsize, 0, 0, cv.INTER_LINEAR)
+        const contours = findContours(binaryData, canvas.width, canvas.height);
+        const maxContour = getMaxContour(contours);
+        const boundingBox = getBoundingRect(maxContour);
 
-        cv.imshow(canvas, scaled);
+        const url = cropImageByBox(canvas, boundingBox, 2);
 
-        setProcImage(canvas.toDataURL());
-        
-        src.delete();
-        gray.delete();
-        binary.delete();
-        hierachy.delete();
-        contours.delete();
-        scaled.delete()
-      }
-    }
+        setProcImage(url);
+      };
+    };
 
     processImage();
   }, [image]);
 
   return [image, setImage, procImage];
-}
+};
 
 export default usePreprocess;

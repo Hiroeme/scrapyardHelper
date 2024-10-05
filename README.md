@@ -26,4 +26,4 @@ Quest names and difficulty were pulled from
 - [x] Refactor useEffects into Separate Files
 - [] Styling
 - [] How to Copy and Paste Guide
-- [] Replace opencv.js with an alternative
+- [x] Replace opencv.js with an alternative
