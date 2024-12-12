@@ -1,3 +1,4 @@
+import './App.css';
 import usePreprocess from "./hooks/usePreprocess";
 import useTextExtract from "./hooks/useTextExtract";
 import useTextClean from "./hooks/useTextClean";
@@ -11,32 +12,32 @@ function App() {
   useClipboard(setImage)
   
   return (
-    <div>
-      <h1>
+    <div className="container">
+      <h1 className="title">
         Maplestory Scrapyard Helper
       </h1>
-      <div>
+      <div className="instructions">
         <p>
           Copy and paste your scrapyard weeklies to display the average time required for completing each one.
         </p>
         <p>
-          Note: This is a <a href="https://github.com/Hiroeme/scrapyardHelper"><b>WIP</b></a> so it can be inaccurate!
+          Note: This is a <a href="https://github.com/Hiroeme/scrapyardHelper" className="link"><b>WIP</b></a> so it can be inaccurate!
         </p>
-      </div >
-      <div>
-        {image && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={image} alt="copy pasted image" />}
       </div>
-      <div>
-        {/* {procImage && <img style={{maxHeight: '500px', maxWidth: '500px'}} src={procImage} alt="processed image" />} */}
+      <div className="image-container">
+        {image && <img src={image} alt="copy pasted image" />}
       </div>
-
-      <ul>
-      {quests && quests.map(quest => (
-        <li key={quest.name}> Name: {quest.name} Average Time Required: {quest.averagetime}</li>
-      ))}
-      </ul>
-
       
+      {quests && (
+        <ul className="quest-list">
+          {quests.map(quest => (
+            <li key={quest.name} className="quest-item">
+              <span className="quest-name">Name: {quest.name}</span>
+              <span className="quest-time">Average Time Required: {quest.averagetime}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
