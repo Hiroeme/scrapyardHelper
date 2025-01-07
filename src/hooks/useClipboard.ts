@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 
-const useClipboard = (setImage) => {
+const useClipboard = (setImage : React.Dispatch<React.SetStateAction<string>>) => {
   
   useEffect(() => {
 
-    const pasteImg =  async () => {
+    const pasteImg = async () => {
       try {
-        await navigator.permissions.query({ name: 'clipboard-read'});
+        await navigator.permissions.query({ name: 'clipboard-read' as PermissionName });
         const clipboardItems=  await navigator.clipboard.read();
         const blobOutput = await clipboardItems[0].getType('image/png');
         const data = URL.createObjectURL(blobOutput)

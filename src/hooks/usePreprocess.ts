@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { convertToGrayscale, convertToBinary, findContours, getBoundingRect, getMaxContour, cropImageByBox } from "../utils/imageprocessing";
 
-const usePreprocess = () => {
-  const [image, setImage] = useState(null);
-  const [procImage, setProcImage] = useState(null);
+type UsePreProcessHook = [string, React.Dispatch<React.SetStateAction<string>>, string];
+
+const usePreprocess = () : UsePreProcessHook => {
+  const [image, setImage] = useState('');
+  const [procImage, setProcImage] = useState('');
 
   useEffect(() => {
     if (!image) return;
@@ -19,6 +21,7 @@ const usePreprocess = () => {
         canvas.width = imageElement.width;
         canvas.height = imageElement.height;
 
+        if (!ctx) return;
         ctx.drawImage(imageElement, 0, 0);
 
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -39,7 +42,7 @@ const usePreprocess = () => {
         }
 
         ctx.putImageData(imageData, 0, 0)
-
+        // const contours = findContours(binaryData, canvas.width, canvas.height);
         const contours = findContours(binaryData, canvas.width, canvas.height);
         const maxContour = getMaxContour(contours);
         const boundingBox = getBoundingRect(maxContour);

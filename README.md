@@ -24,6 +24,8 @@ Quest names and difficulty were pulled from
 ### Side
 
 - [x] Refactor useEffects into Separate Files
-- [] Styling
+- [x] Styling
 - [] How to Copy and Paste Guide
 - [x] Replace opencv.js with an alternative
+- [] Migrate to TS
+- [] Dark mode toggle

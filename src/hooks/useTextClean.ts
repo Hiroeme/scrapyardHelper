@@ -1,16 +1,17 @@
 import Fuse from "fuse.js";
 import { useState, useEffect } from "react"
 import data from '../../data.json'
+import { Quest } from '../types/types';
 
 // previous attempt
 // console.log(text.replace(/(\W\r\n|\n|\r)/gm, " "))
 // const result = data.quests
 //   .filter(quest => text.replace(/(\W\r\n|\n|\r)/gm, " ").toLowerCase().includes(quest.name.toLowerCase()))
 
-
-const useTextClean = (text) => {
+const useTextClean = (text : string) : (Quest | undefined)[] => {
   
-  const [cleanText, setCleanText] = useState([]);
+  // const [cleanText, setCleanText] = useState([]);
+  const [cleanText, setCleanText] = useState<(Quest | undefined)[]>([]);
 
   useEffect(() => {
     if (!text) return;

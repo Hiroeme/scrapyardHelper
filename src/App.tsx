@@ -30,12 +30,15 @@ function App() {
       
       {quests && (
         <ul className="quest-list">
-          {quests.map(quest => (
+          
+          {quests.map(quest => 
+            quest ? (
             <li key={quest.name} className="quest-item">
-              <span className="quest-name">Name: {quest.name}</span>
-              <span className="quest-time">Average Time Required: {quest.averagetime}</span>
+              <span className="quest-name">{quest.name}</span>
+              <span className="quest-time">{quest.averagetime}</span>
             </li>
-          ))}
+          ) : null
+        )}
         </ul>
       )}
     </div>

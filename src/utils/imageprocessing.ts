@@ -75,12 +75,12 @@ const convertToBinary = (grayscaleData: Uint8ClampedArray, threshold: number): U
  * @param height
  * @returns {{ x : number, y : number }[][]} List of contours
  */
-const findContours = (binaryData : ImageData, width : number, height : number) : { x : number, y : number }[][] => {
+const findContours = (binaryData : Uint8ClampedArray, width : number, height : number) : { x : number, y : number }[][] => {
 
   const contours: { x: number; y: number }[][] = [];
   // const visited = new Array(height * width).fill(false);
   const visited = new Set();
-  const isWhite = (index : number) => binaryData[index ] === 255;
+  const isWhite = (index : number) => binaryData[index] === 255;
  
   // start on the right and go clockwise
   const neighbors = [

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createWorker } from 'tesseract.js';
 
-const useTextExtract = (image) => {
+const useTextExtract = (image : string) => {
   
   const [readText, setReadText] = useState('')
 
