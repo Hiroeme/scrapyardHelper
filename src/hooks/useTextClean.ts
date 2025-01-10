@@ -8,10 +8,10 @@ import { Quest } from '../types/types';
 // const result = data.quests
 //   .filter(quest => text.replace(/(\W\r\n|\n|\r)/gm, " ").toLowerCase().includes(quest.name.toLowerCase()))
 
-const useTextClean = (text : string) : (Quest | undefined)[] => {
+const useTextClean = (text : string) : (Quest)[] => {
   
   // const [cleanText, setCleanText] = useState([]);
-  const [cleanText, setCleanText] = useState<(Quest | undefined)[]>([]);
+  const [cleanText, setCleanText] = useState<(Quest)[]>([]);
 
   useEffect(() => {
     if (!text) return;
@@ -38,9 +38,11 @@ const useTextClean = (text : string) : (Quest | undefined)[] => {
         // console.log(`Extracted Quest: "${text}"\n Best Match: "${bestMatch.name}"\n Score: ${matches[0].score}\n`);
         return bestMatch;
       }
+      return null;
     });
 
-    setCleanText(bestMatches);
+    const bestMatchesRes = bestMatches.filter(match => match != null);
+    setCleanText(bestMatchesRes);
 
     // console.log(text)
     // console.log(strippedText)
