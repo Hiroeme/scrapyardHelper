@@ -1,27 +1,26 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
-const useClipboard = (setImage : React.Dispatch<React.SetStateAction<string>>) => {
-  
+const useClipboard = (setImage: React.Dispatch<React.SetStateAction<string>>) => {
   useEffect(() => {
+    const handlePaste = (event: ClipboardEvent) => {
+      const items = event.clipboardData?.items;
+      if (!items) return;
 
-    const pasteImg = async () => {
-      try {
-        await navigator.permissions.query({ name: 'clipboard-read' as PermissionName });
-        const clipboardItems=  await navigator.clipboard.read();
-        const blobOutput = await clipboardItems[0].getType('image/png');
-        const data = URL.createObjectURL(blobOutput)
-        setImage(data)
-      } catch (error) {
-        console.log(error)
+      // console.log(items[0].type)
+      if (items[0].type.startsWith("image/")) {
+        const blob = items[0].getAsFile();
+        if (blob) {
+          const data = URL.createObjectURL(blob);
+          setImage(data);
+        }
       }
-    }
+    };
 
-    document.addEventListener('paste', () => pasteImg());
+    document.addEventListener("paste", handlePaste);
     return () => {
-      document.removeEventListener('paste', () => pasteImg())
-    }
-  }, [setImage])
-
+      document.removeEventListener("paste", handlePaste);
+    };
+  }, [setImage]);
 };
 
 export default useClipboard;
