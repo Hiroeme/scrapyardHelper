@@ -26,7 +26,7 @@ const Instructions = () => {
 
       {showExample && (
         <div className="example-container">
-          <img className="examplePic" src="../../example.png" alt="Example picture of a good screenshot" />
+          <img className="examplePic" src="/example.png" alt="Example picture of a good screenshot" />
         </div>
       )}
     
