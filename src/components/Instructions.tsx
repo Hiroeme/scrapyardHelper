@@ -32,7 +32,10 @@ const Instructions = () => {
     
     <hr></hr>
     <p>
-      Note: This is a for fun <a href="https://github.com/Hiroeme/scrapyardHelper" className="link"><b>project</b></a> for me so it can be inaccurate!
+      If it doesn't work fully, you can try varying the size of the screenshot, or you can consult the reroll guide linked above.
+    </p>
+    <p>
+      Note: This is a for fun <a href="https://github.com/Hiroeme/scrapyardHelper" className="link"><b>project</b></a> so it can be inaccurate! 
     </p>
   </div>
   );
