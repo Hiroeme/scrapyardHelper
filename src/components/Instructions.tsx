@@ -17,7 +17,7 @@ const Instructions = () => {
     <ul>
       <li>Press <b>Window's Logo Key + Shift + S</b> to open the Windows snipping tool.</li>
       <li>Drag a box around One-Eye's Scrapyard Weeklies Quest Box.</li>
-      <li>Copy the image and paste it here.</li>
+      <li>Copy the image and press <b>Ctrl + v</b> to paste it here.</li>
     </ul>
 
     <button onClick={() => setShowExample(!showExample)}>
