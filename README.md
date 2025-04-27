@@ -24,11 +24,15 @@ Thank you for understanding!
 
 1. Go to the [Maplestory Scrapyard Helper](https://scrapyard-helper.vercel.app/).
 2. Open the in-game Scrapyard Quests window.
-2. Use the [Windows built-in screenshot feature](https://www.microsoft.com/en-us/windows/learning-center/how-to-screenshot-windows-11).
-3. Paste into the helper.
+3. Use the [Windows built-in screenshot feature](https://www.microsoft.com/en-us/windows/learning-center/how-to-screenshot-windows-11).
+4. Paste into the helper.
 5. Choose which quests you would like to reroll!
 
-## To Do List 
+## Contribuing
+
+If you'd like you contribute, you can fork the repository and open a pull request to the `main` branch!
+
+## To Do List
 
 ### Main Quests
 
