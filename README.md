@@ -1,8 +1,10 @@
-# GMS Maplestory Scrapyard Helper
+# GMS MapleStory Scrapyard Helper
 
-Tells you the difficulty and reroll chances of your scrapyard weeklies based on your screenshot image.
+## Description
 
-## Information
+Reads a pasted image of Scrapyard Weeklies, and displays the difficult and reroll chances based on source information criteria.
+
+## Source Information
 
 Quest names and difficulty ratings were pulled from
 
@@ -10,17 +12,25 @@ Quest names and difficulty ratings were pulled from
 - [StrategyWiki](https://strategywiki.org/wiki/MapleStory/Towns/Scrapyard)
 - [Maplestory Wiki](https://maplestorywiki.net/w/Quests/105/(Weekly_Quest)_Haven_Weekly_Mission)
 
-## Notes
+## Motivation
 
-This is mainly a for fun project, so it can be inaccurate.
+I made this project initially because I found it tedious to look through every Scrapyard quest to determine if I should reroll it. I don't play the game often enough to memorize it enough, so I figured I could create a web application that can streamline the process. It saves me a couple minutes every time I use it!
 
 Also, do let me know if something can be better implemented, because I know I probably did not follow best coding practices. I'm always willing to learn :)
 
 Thank you for understanding!
 
-## To Do List
+## Quick Start & Usage
 
-### Main
+1. Go to the [Maplestory Scrapyard Helper](https://scrapyard-helper.vercel.app/).
+2. Open the in-game Scrapyard Quests window.
+2. Use the [Windows built-in screenshot feature](https://www.microsoft.com/en-us/windows/learning-center/how-to-screenshot-windows-11).
+3. Paste into the helper.
+5. Choose which quests you would like to reroll!
+
+## To Do List 
+
+### Main Quests
 
 - [x] Basic OCR Functionality w/tesseract.js
 - [x] Preprocessing Image w/opencv.js
@@ -29,9 +39,9 @@ Thank you for understanding!
 - [x] Verify Quest Names
 - [x] Reroll Recommender
 
-### Side
+### Side Quests
 
-- [x] Styling
+- [x] Basic Styling
 - [x] How to Copy and Paste Guide
 - [x] Replace opencv.js with an alternative
 - [] Dark mode toggle
