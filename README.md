@@ -28,7 +28,7 @@ Thank you for understanding!
 4. Paste into the helper.
 5. Choose which quests you would like to reroll!
 
-## Contribuing
+## Contributing
 
 If you'd like you contribute, you can fork the repository and open a pull request to the `main` branch!
 
