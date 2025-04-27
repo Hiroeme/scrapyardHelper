@@ -10,14 +10,14 @@ const Instructions = () => {
       You can then decide which ones you want to keep or remove.
     </p>
     
-    <p>Difficulty ratings were pulled from <a href="https://docs.google.com/spreadsheets/d/1FJcMQHfhsDNsRQW_KhrmR3uyWmudv8e8Y_nY5uawKAg/edit?gid=0#gid=0">u/GyroBallMetagross's Reroll Guide</a>.</p>
+    <p>Difficulty ratings were pulled from <a href="https://docs.google.com/spreadsheets/d/1FJcMQHfhsDNsRQW_KhrmR3uyWmudv8e8Y_nY5uawKAg/edit?gid=1077207113#gid=1077207113">u/GyroBallMetagross's MSEA Reroll Guide</a>.</p>
 
     <hr></hr>
 
     <ul>
       <li>Press <b>Window's Logo Key + Shift + S</b> to open the Windows snipping tool.</li>
       <li>Drag a box around One-Eye's Scrapyard Weeklies Quest Box.</li>
-      <li>Copy the image and press <b>Ctrl + v</b> to paste it here.</li>
+      <li>Copy the image and press <b>Ctrl + V</b> to paste it here.</li>
     </ul>
 
     <button onClick={() => setShowExample(!showExample)}>
