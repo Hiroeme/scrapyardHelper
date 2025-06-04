@@ -42,7 +42,7 @@ function App() {
   }
   
   return (  
-    <div className="dark:bg-zinc-800 bg-orange-300 p-8 mt-20 mb-20 mr-auto ml-auto max-w-6xl border-2 rounded-2xl shadow-lg">
+    <div className="dark:bg-zinc-800 bg-orange-300 p-8 mt-20 mb-20 mr-auto ml-auto max-w-5xl border-2 rounded-2xl shadow-lg">
       <div className="flex">
         <h1 className="dark:text-white text-3xl font-bold flex-1 p-4">
           GMS Maplestory Scrapyard Helper
