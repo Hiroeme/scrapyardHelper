@@ -48,4 +48,4 @@ If you'd like you contribute, you can fork the repository and open a pull reques
 - [x] Basic Styling
 - [x] How to Copy and Paste Guide
 - [x] Replace opencv.js with an alternative
-- [] Dark mode toggle
+- [x] Dark mode toggle
