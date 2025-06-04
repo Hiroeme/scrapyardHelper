@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.8",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.0.12",
     "fuse.js": "^7.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "tailwindcss": "^4.1.8",
     "tesseract.js": "^5.1.1"
   },
   "devDependencies": {

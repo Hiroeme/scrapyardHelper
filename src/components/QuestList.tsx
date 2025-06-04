@@ -9,33 +9,30 @@ const QuestList: React.FC<QuestListProps> = ({ recs }) => {
   if (recs.length <= 0) return null;
 
   return (
-    <div className="quest-list-container">
-    <div className="category-block">
-      <div className="categories">
-        <div className="category-name">Name</div>
-        <div className="category-mob">Mob</div>
-        <div className="category-difficulty">Difficulty</div>
-      </div>
-      <div className="category-reroll">Reroll Chances</div>
+<div className="bg-amber-50 p-4 mt-4 mb-4 border rounded-2xl shadow-lg">
+  <table className="min-w-full table-auto border-collapse">
+    <thead>
+      <tr className="text-left">
+        <th className="px-4 py-2">Name</th>
+        <th className="px-4 py-2">Mob</th>
+        <th className="px-4 py-2">Difficulty</th>
+        <th className="px-4 py-2">Reroll %</th>
+      </tr>
+    </thead>
+    <tbody>
+          {recs.map(quest =>
+            quest ? (
+              <tr key={quest.name} className="border-t">
+                <td className="px-4 py-2">{quest.name}</td>
+                <td className="px-4 py-2">{quest.mob}</td>
+                <td className="px-4 py-2 font-semibold">{quest.averagetime}</td>
+                <td className="px-4 py-2 font-semibold">{quest.reroll}%</td>
+              </tr>
+            ) : null
+          )}
+        </tbody>
+      </table>
     </div>
-
-    <ul className="quest-list">
-      {recs.map(quest => 
-        quest ? (
-        <li key={quest.name} className="quest-block">
-          <div className="quest-item">
-            <span className="quest-name">{quest.name}</span>
-            <span className="quest-mob">{quest.mob}</span>
-            <span className="quest-time">{quest.averagetime}</span>
-          </div>
-          <div className="quest-reroll">
-            {quest.reroll}%
-          </div>
-        </li>
-      ) : null
-    )}
-    </ul>
-  </div>
   )
 }
 
