@@ -34,7 +34,7 @@ const Instructions = () => {
       If it doesn't work fully, you can try varying the size of the screenshot, or you can consult the reroll guide linked above.
     </p>
     <p>
-      Note: This is a for fun <a href="https://github.com/Hiroeme/scrapyardHelper" className="font-bold text-blue-500 hover:text-blue-800"><b>project</b></a> so it can be inaccurate! Thank you for using it!
+      Note: This is a for fun <a href="https://github.com/Hiroeme/scrapyardHelper" className="font-semibold text-blue-500 hover:text-blue-800"><b>project</b></a> so it can be inaccurate! Thank you for using it!
     </p>
   </div>
   );
