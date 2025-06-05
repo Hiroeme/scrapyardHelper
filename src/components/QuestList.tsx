@@ -9,7 +9,7 @@ const QuestList: React.FC<QuestListProps> = ({ recs }) => {
   if (recs.length <= 0) return null;
 
   return (
-<div className="dark:bg-zinc-700 text-xl bg-amber-50 p-4 mt-4 mb-4 rounded-2xl shadow-lg">
+<div className="dark:bg-zinc-700 text-xl bg-amber-50 p-4 mt-4 mb-4 rounded-2xl shadow-lg overflow-x-auto">
   <table className="min-w-full table-auto border-collapse">
     <thead className="dark:text-white">
       <tr className="text-left">
