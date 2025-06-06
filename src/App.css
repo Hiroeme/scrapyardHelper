@@ -1,3 +1,13 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+body,
+body * {
+  @apply duration-0;
+}
+
+.transition-enabled body,
+.transition-enabled body * {
+  @apply transition-colors duration-500;
+}
